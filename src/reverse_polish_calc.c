@@ -8,10 +8,8 @@
 #define MAXVAL 100
 #define NUMBER '0'
 #define BUFSIZE 100
-#define PI 3.14159265
-
 /* Function Declarators */
-int getop(char []);
+int getop(char[]);
 void push(double);
 double pop(void);
 int getch(void);
@@ -20,8 +18,8 @@ void ungetch(int);
 /* External Variables */
 int sp = 0;
 double val[MAXVAL]; /* stack */
-char buf[BUFSIZE];  /* buffer for ungetch */
-int bufp = 0;       /* next free position in buf */
+char buf[BUFSIZE];	/* buffer for ungetch */
+int bufp = 0;		/* next free position in buf */
 
 int main()
 {
@@ -29,45 +27,43 @@ int main()
 	double op2;
 	char s[MAXOP];
 
-	while ((type = getop(s)) != EOF) {
-		switch(type) {
-			case NUMBER:
-				push(atof(s));
-				break;
-			case '+':
-				push(pop() + pop());
-				break;
-			case '-':
-				op2 = pop();
-				push(pop() - op2);
-				break;
-			case '*':
-				push(pop() * pop());
-				break;
-			case '/':
-				op2 = pop();
-				if (op2 != 0.0)
-					push(pop() / op2);
-				else
-					printf("error value: division by 0");
-				break;
-			case '%':
-				op2 = pop();
-				if (op2 != 0.0)
-					push((int) (pop() / op2));
-				else
-					printf("error value: modulus by 0");
-				break;
-			case 's':
-				op2 = sin(pop());
-				push(op2);
-				break;
-			case '\n':
-				printf("\t%.8g\n", pop());
-				break;
-			default:
-				printf("error: unknown command %s\n", s);
-				break;
+	while ((type = getop(s)) != EOF)
+	{
+		switch (type)
+		{
+		case NUMBER:
+			push(atof(s));
+			break;
+		case '+':
+			push(pop() + pop());
+			break;
+		case '-':
+			op2 = pop();
+			push(pop() - op2);
+			break;
+		case '*':
+			push(pop() * pop());
+			break;
+		case '/':
+			op2 = pop();
+			if (op2 != 0.0)
+				push(pop() / op2);
+			else
+				printf("error value: division by 0");
+			break;
+		case '%':
+			op2 = pop();
+			if (op2 != 0.0)
+				push((int)(pop() / op2));
+			else
+				printf("error value: modulus by 0");
+			break;
+		case '\n':
+			printf("\t%.8g\n", pop());
+			break;
+		default:
+			printf("error: unknown command %s\n", s);
+			break;
 		}
 	}
 
@@ -80,7 +76,7 @@ void push(double f)
 	if (sp < MAXVAL)
 		val[sp++] = f;
 	else
-		printf("error: stack full, can't push %g\n", f);    /*  Error Handling  */
+		printf("error: stack full, can't push %g\n", f); /*  Error Handling  */
 }
 
 /* pop: pop and return the top value from the stack */
@@ -88,7 +84,8 @@ double pop(void)
 {
 	if (sp > 0)
 		return val[--sp];
-	else {
+	else
+	{
 		printf("error : stack empty\n");
 		return 0.0;
 	}
@@ -99,10 +96,10 @@ int getop(char s[])
 {
 	int i, c;
 
-	while ((s[0] = c= getch()) == ' ' || c == '\t')
+	while ((s[0] = c = getch()) == ' ' || c == '\t')
 		;
 	s[1] = '\0';
-	
+
 	if ((!isdigit(c) || c == 's') && c != '.')
 		return c;
 
