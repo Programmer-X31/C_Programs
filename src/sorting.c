@@ -60,7 +60,7 @@ void q_sort(int v[], int left, int right)
 	int i, last;
 	if (left >= right)
 		return;
-	swap(v, left, (left + right) / 2);
+	swap(v, left, (left + right) / 2); // Swapping the pivot with the first elem
 	last = left;
 	for (i = left + 1; i <= right; i++)
 		if (v[i] < v[left])
@@ -103,28 +103,28 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < n; i++)
 	{
 		arr1[i] = arr2[i] = arr3[i] = rand() % LIMIT + 1;
-		printf("%d - %d - %d \n", arr1[i], arr2[i], arr3[i]);
+		// printf("%d - %d - %d \n", arr1[i], arr2[i], arr3[i]);
 	}
 	printf("\n");
 
 	strt = clock();
-	q_sort(arr3, 0, n);
+	q_sort(arr1, 0, n);
 	end = clock();
 	cpu_time_used = ((double)(end - strt)) / CLOCKS_PER_SEC;
 	printf("Time taken (Quick Sort):  %f sec\n", cpu_time_used);
 
 	strt = clock();
-	shell_sort(arr1, n);
+	shell_sort(arr2, n);
 	end = clock();
 	cpu_time_used = ((double)(end - strt)) / CLOCKS_PER_SEC;
 	printf("Time taken (Shell Sort):  %f sec\n", cpu_time_used);
 
 	strt = clock();
-	bubble_sort(arr2, n);
+	bubble_sort(arr3, n);
 	end = clock();
 	cpu_time_used = ((double)(end - strt)) / CLOCKS_PER_SEC;
 	printf("Time taken (Bubble Sort): %f sec\n", cpu_time_used);
 
-	printf("\nSorted Array: \n");
+	printf("Sorted Array: \n");
 	printarray(arr1, n);
 }

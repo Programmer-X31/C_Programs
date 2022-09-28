@@ -17,7 +17,7 @@ int main()
 		s[i] = c;
 	s[++i] = '\0';						/* Escape Character at the end */
 	
-	int year = atoi(s);
+	int year = atoi(s );
 	
 	if (year % 400 == 0) {
 		printf("%d is a leap year.", year);

@@ -16,8 +16,7 @@ void reverse(char s[])
 
 void strcpy(char *s, char *t)
 {
-	while ((*s++ = *t++) != '\0')
-		;
+	while ((*s++ = *t++) != '\0');
 }
 
 int main(int argc, char *argv[])
