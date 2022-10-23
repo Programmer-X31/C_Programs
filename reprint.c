@@ -17,10 +17,5 @@
  */
 
 #include <stdio.h>
+#include <unistd.h>
 
-int main(int argc, char *argv[])
-{
-	printf("hello");
-	printf("\33[2K\r");
-	printf("bye\n");
-}

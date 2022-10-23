@@ -6,7 +6,7 @@ int max;
 char curr_line[MAXLINE];
 char longest[MAXLINE];
 
-int get_line(void);
+int getline(char *line, int max);
 void copy(void);
 
 int main()
@@ -17,7 +17,7 @@ int main()
 
 	printf("Enter lines: \n");
 	max = 0;
-	while ((len = get_line()) > 0)
+	while ((len = getline(curr_line, MAXLINE, stdin)) > 0)
 		if (len > max)
 		{
 			max = len;
@@ -28,20 +28,12 @@ int main()
 	return 0;
 }
 
-int get_line(void)
+int getline(char *line, int max)
 {
-	int c, i;
-	extern char curr_line[];
-
-	for (i = 0; i < MAXLINE - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
-		curr_line[i] = c;
-	if (c == '\n')
-	{
-		curr_line[i] = c;
-		++i;
-	}
-	curr_line[i] = '\0';
-	return i;
+	if(fgets(line, max, stdin) == NULL)
+		return NULL;
+	else
+		return strlen(line);
 }
 
 void copy(void)

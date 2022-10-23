@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 int atoi_1(char s[]);
 void shell_sort(int v[], int n);
